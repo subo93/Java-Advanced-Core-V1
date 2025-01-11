@@ -1,8 +1,11 @@
 package Threads;
 
-    class A implements Runnable {
+public class Demo3 {
+    public static void main(String[] args) {
 
-        public void run() {
+        //creating anonymouse classes with Runnable interface!
+
+        Runnable rn1 = () -> {
             for (int i = 0; i < 5; i++) {
                 System.out.println("Class A!");
                 try {
@@ -11,39 +14,25 @@ package Threads;
                     throw new RuntimeException(e);
                 }
             }
+        };
 
-        }
+        Runnable rn2 = () -> {
 
-    }
-
-    class B implements Runnable {
-        public void run() {
             for (int i = 0; i < 5; i++) {
-                System.out.println("Class B!");
+                System.out.println("Class BBBB!");
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
-        }
+
+        };
+
+        Thread t1 = new Thread(rn1);
+        Thread t2 = new Thread(rn2);
+
+        t1.start();
+        t2.start();
     }
-
-
-    public class Demo3 {
-        public static void main(String[] args) {
-
-            Threads.A a = new Threads.A();
-            Threads.B b = new Threads.B();
-
-           // b.setPriority(Thread.MAX_PRIORITY);
-            System.out.println("Thread.MAX_PRIORITY  = " + Thread.MAX_PRIORITY);
-            System.out.println("Thread.MIX_PRIORITY  = " + Thread.MIN_PRIORITY);
-            System.out.println("Thread.Norm_PRIORITY  = " + Thread.NORM_PRIORITY);
-
-
-            System.out.println();
-            a.start();
-            b.start();
-        }
-    }
+}
