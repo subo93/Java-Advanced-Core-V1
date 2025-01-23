@@ -1,5 +1,8 @@
 package Threads;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Demo6 {
 
     // explain thread states in java
@@ -25,5 +28,43 @@ public class Demo6 {
         System.out.println("Thread state: 3 " + t1.getState());
         System.out.println("Thread has finished");
         System.out.println("Thread state: 4 " + t1.getState());
+        System.out.println("::::::::::::::::::::::::::::: Thread poolong:::::::::::::::::::::::::::");
+
+        //example for thread pooling
+        // 1. Create a fixed thread pool with 5 threads
+
+        // 2. Submit 10 tasks to the thread pool
+        // 3. Print the thread name for each task
+        // 4. Shutdown the thread pool
+        // 5. Print a message after the thread pool has been shut down
+        // 6. Submit another task to the thread pool
+        // 7. Print the thread name for the task
+        // 8. Print a message that the thread pool has been shut down
+        // 9. Print a message that the task was not executed because the thread pool has been shut down
+        // 10. Print a message that the program has finished
+        // 11. Run the program and observe the output
+        // 12. Change the thread pool to a cached thread pool and run the program again
+        //give me the code now
+          //example code for thread pooling
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        for (int i = 0; i < 10; i++) {
+            int finalI = i;
+            executorService.submit(() -> {
+                System.out.println("Task " + finalI + " is running on thread " + Thread.currentThread().getName());
+            });
+        }
+        executorService.shutdown();
+        System.out.println("Thread pool has been shut down");
+        executorService.submit(() -> {
+            System.out.println("Task 11 is running on thread " + Thread.currentThread().getName());
+        });
+        System.out.println("Thread pool has been shut down");
+        executorService.shutdown();
+        executorService.submit(() -> {
+            System.out.println("Task 12 is running on thread " + Thread.currentThread().getName());
+        });
+        System.out.println("Task was not executed because the thread pool has been shut down");
+        System.out.println("Program has finished");
+
     }
 }

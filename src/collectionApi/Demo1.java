@@ -2,6 +2,7 @@ package collectionApi;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Demo1 {
@@ -24,6 +25,7 @@ public class Demo1 {
         list.add(0); // Adding a placeholder element at index 1
         list.add(4); // Adding a placeholder element at index 2
         list.set(1, 99);
+        Collections.sort(list);
         System.out.println(list);
 
 

@@ -3,7 +3,8 @@ package Threads;
 class Counter{
     int count;
     public synchronized void increament(){
-         count++;
+
+        count++;
     }
 }
 
